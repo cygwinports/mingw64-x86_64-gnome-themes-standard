@@ -1,0 +1,39 @@
+CROSS_HOST="x86_64-w64-mingw32"
+ORIG_PN="gnome-themes-standard"
+inherit cross gnome2
+
+NAME="mingw64-x86_64-gnome-themes-standard"
+VERSION=3.18.0
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="Default GNOME themes for Win64 toolchain"
+DESCRIPTION="Default theme sets for GNOME 3 applications"
+
+DISTCLEANFILES="themes/HighContrast/icons/Makefile"
+
+PKG_NAMES="${NAME} mingw64-x86_64-adwaita-themes"
+mingw64_x86_64_gnome_themes_standard_REQUIRES="mingw64-x86_64-adwaita-themes"
+mingw64_x86_64_gnome_themes_standard_CONTENTS="
+	etc/postinstall/
+	usr/share/doc/
+	${CROSS_DATADIR#/}/icons/HighContrast/
+	${CROSS_DATADIR#/}/themes/HighContrast/
+"
+mingw64_x86_64_adwaita_themes_REQUIRES="mingw64-x86_64-adwaita-icon-theme mingw64-x86_64-librsvg2"
+mingw64_x86_64_adwaita_themes_CONTENTS="
+	${CROSS_LIBDIR#/}/gtk-2.0/*/engines/libadwaita.dll
+	${CROSS_DATADIR#/}/gtk-2.0/gtkrc
+	${CROSS_DATADIR#/}/themes/Adwaita/
+"
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	dodir ${CROSS_DATADIR}/gtk-2.0
+	cat > ${D}${CROSS_DATADIR}/gtk-2.0/gtkrc <<_EOF
+gtk-theme-name = "Adwaita"
+gtk-cursor-theme-name = "Adwaita"
+gtk-icon-theme-name = "Adwaita"
+_EOF
+}
