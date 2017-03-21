@@ -3,7 +3,7 @@ ORIG_PN="gnome-themes-standard"
 inherit cross gnome2
 
 NAME="mingw64-x86_64-gnome-themes-standard"
-VERSION=3.18.0
+VERSION=3.22.2
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="Default GNOME themes for Win64 toolchain"
