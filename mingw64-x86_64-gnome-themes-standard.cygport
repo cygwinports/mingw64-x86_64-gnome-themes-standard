@@ -3,7 +3,7 @@ ORIG_PN="gnome-themes-standard"
 inherit cross gnome2
 
 NAME="mingw64-x86_64-gnome-themes-standard"
-VERSION=3.22.2
+VERSION=3.22.3
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="Default GNOME themes for Win64 toolchain"
@@ -15,6 +15,7 @@ PKG_NAMES="${NAME} mingw64-x86_64-adwaita-themes"
 mingw64_x86_64_gnome_themes_standard_REQUIRES="mingw64-x86_64-adwaita-themes"
 mingw64_x86_64_gnome_themes_standard_CONTENTS="
 	etc/postinstall/
+	etc/preremove/
 	usr/share/doc/
 	${CROSS_DATADIR#/}/icons/HighContrast/
 	${CROSS_DATADIR#/}/themes/HighContrast/
@@ -23,7 +24,7 @@ mingw64_x86_64_adwaita_themes_REQUIRES="mingw64-x86_64-adwaita-icon-theme mingw6
 mingw64_x86_64_adwaita_themes_CONTENTS="
 	${CROSS_LIBDIR#/}/gtk-2.0/*/engines/libadwaita.dll
 	${CROSS_DATADIR#/}/gtk-2.0/gtkrc
-	${CROSS_DATADIR#/}/themes/Adwaita/
+	${CROSS_DATADIR#/}/themes/Adwaita*/
 "
 
 src_install() {
